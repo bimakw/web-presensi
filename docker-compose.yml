@@ -1,0 +1,19 @@
+services:
+  web-presensi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web-presensi
+    ports:
+      - "11080:11080"
+    environment:
+      - NODE_ENV=production
+      - PORT=11080
+      - ORIGIN=http://localhost:11080
+    restart: unless-stopped
+    networks:
+      - presensi-network
+
+networks:
+  presensi-network:
+    external: true
