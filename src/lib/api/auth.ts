@@ -4,7 +4,8 @@ import type {
 	LoginRequest,
 	LoginResponse,
 	RegisterRequest,
-	User
+	User,
+	ChangePasswordRequest
 } from '$lib/types';
 
 export const authApi = {
@@ -16,5 +17,8 @@ export const authApi = {
 			data
 		),
 
-	getProfile: () => api.get<ApiResponse<User>>('/api/auth/profile')
+	getProfile: () => api.get<ApiResponse<User>>('/api/auth/profile'),
+
+	changePassword: (data: ChangePasswordRequest) =>
+		api.post<ApiResponse<null>>('/api/auth/change-password', data)
 };

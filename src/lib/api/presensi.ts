@@ -31,7 +31,9 @@ export const presensiApi = {
 
 	delete: (id: string) => api.delete<ApiResponse<null>>(`/api/presensi/${id}`),
 
-	checkIn: (id: string) => api.post<ApiResponse<null>>(`/api/presensi/${id}/checkin`),
+	checkIn: (id: string, location?: { latitude: number; longitude: number }) =>
+		api.post<ApiResponse<null>>(`/api/presensi/${id}/checkin`, location),
 
-	checkOut: (id: string) => api.post<ApiResponse<null>>(`/api/presensi/${id}/checkout`)
+	checkOut: (id: string, location?: { latitude: number; longitude: number }) =>
+		api.post<ApiResponse<null>>(`/api/presensi/${id}/checkout`, location)
 };

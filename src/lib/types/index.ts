@@ -85,3 +85,36 @@ export interface PresensiFilter {
 	page?: number;
 	limit?: number;
 }
+
+export interface ChangePasswordRequest {
+	current_password: string;
+	new_password: string;
+}
+
+export interface AnalyticsSummary {
+	total_records: number;
+	total_hadir: number;
+	total_terlambat: number;
+	total_izin: number;
+	total_sakit: number;
+	total_cuti: number;
+	total_alpha: number;
+	percentage_hadir: number;
+}
+
+export interface DailyStat {
+	date: string;
+	count: number;
+}
+
+export interface MonthlyAnalytics {
+	month: string;
+	summary: AnalyticsSummary;
+	daily_stats: DailyStat[];
+}
+
+export interface UserAnalytics {
+	user_id: string;
+	nama: string;
+	summary: AnalyticsSummary;
+}

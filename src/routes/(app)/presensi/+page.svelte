@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { presensiApi } from '$lib/api';
 	import { auth } from '$lib/stores/auth.svelte';
+	import { geolocation } from '$lib/stores/geolocation.svelte';
 	import { Card, Badge, Button, Input, Select, Modal, Alert } from '$lib/components/ui';
 	import type { Presensi, StatusPresensi, CreatePresensiRequest } from '$lib/types';
 
@@ -136,8 +137,21 @@
 	}
 
 	async function handleCheckIn(id: string) {
+		error = '';
 		try {
-			await presensiApi.checkIn(id);
+			let location: { latitude: number; longitude: number } | undefined;
+
+			if (geolocation.isSupported) {
+				try {
+					const pos = await geolocation.getCurrentPosition();
+					location = { latitude: pos.latitude, longitude: pos.longitude };
+				} catch (locErr) {
+					error = locErr instanceof Error ? locErr.message : 'Gagal mendapatkan lokasi';
+					return;
+				}
+			}
+
+			await presensiApi.checkIn(id, location);
 			success = 'Check-in berhasil';
 			await loadData();
 		} catch (err) {
@@ -146,8 +160,20 @@
 	}
 
 	async function handleCheckOut(id: string) {
+		error = '';
 		try {
-			await presensiApi.checkOut(id);
+			let location: { latitude: number; longitude: number } | undefined;
+
+			if (geolocation.isSupported) {
+				try {
+					const pos = await geolocation.getCurrentPosition();
+					location = { latitude: pos.latitude, longitude: pos.longitude };
+				} catch {
+					// Location optional for checkout
+				}
+			}
+
+			await presensiApi.checkOut(id, location);
 			success = 'Check-out berhasil';
 			await loadData();
 		} catch (err) {

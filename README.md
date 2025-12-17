@@ -15,9 +15,12 @@ Frontend application for attendance management system built with SvelteKit and T
 - [x] User Authentication (Login/Register)
 - [x] Dashboard with attendance statistics
 - [x] Attendance list with filtering
-- [x] Check-in/Check-out functionality
+- [x] Check-in/Check-out functionality with geolocation
 - [x] Role-based access (Admin/Employee)
 - [x] Responsive design
+- [x] User Profile management
+- [x] Analytics dashboard with charts
+- [x] Geolocation-based check-in validation
 
 ## Prerequisites
 
@@ -72,15 +75,23 @@ web-presensi/
 ├── src/
 │   ├── lib/
 │   │   ├── api/          # API client & services
+│   │   │   ├── auth.ts
+│   │   │   ├── presensi.ts
+│   │   │   ├── analytics.ts
+│   │   │   └── client.ts
 │   │   ├── components/   # Reusable components
 │   │   │   ├── ui/       # UI components (Button, Input, etc.)
-│   │   │   └── layout/   # Layout components (Navbar)
+│   │   │   └── layout/   # Layout components (Navbar, Footer)
 │   │   ├── stores/       # Svelte stores
+│   │   │   ├── auth.svelte.ts
+│   │   │   └── geolocation.svelte.ts
 │   │   └── types/        # TypeScript types
 │   ├── routes/
 │   │   ├── (app)/        # Protected routes
 │   │   │   ├── dashboard/
-│   │   │   └── presensi/
+│   │   │   ├── presensi/
+│   │   │   ├── analytics/
+│   │   │   └── profile/
 │   │   ├── login/
 │   │   └── register/
 │   └── app.css           # Global styles
@@ -128,8 +139,13 @@ This frontend consumes the following API endpoints from [service-presensi](https
 - `GET /api/presensi/:id` - Get attendance by ID
 - `PUT /api/presensi/:id` - Update attendance
 - `DELETE /api/presensi/:id` - Delete attendance
-- `POST /api/presensi/:id/checkin` - Check-in
-- `POST /api/presensi/:id/checkout` - Check-out
+- `POST /api/presensi/:id/checkin` - Check-in with location
+- `POST /api/presensi/:id/checkout` - Check-out with location
+
+### Analytics
+- `GET /api/analytics/summary` - Overall attendance summary
+- `GET /api/analytics/monthly` - Monthly statistics
+- `GET /api/analytics/status-breakdown` - Status distribution
 
 ## Screenshots
 

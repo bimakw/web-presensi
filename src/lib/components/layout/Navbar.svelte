@@ -33,6 +33,12 @@
 						>
 							Presensi
 						</a>
+						<a
+							href="/analytics"
+							class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600"
+						>
+							Statistik
+						</a>
 						{#if auth.user?.role === 'admin'}
 							<a
 								href="/admin"
@@ -48,9 +54,17 @@
 			<div class="flex items-center">
 				{#if auth.isAuthenticated}
 					<div class="hidden md:flex items-center space-x-4">
-						<span class="text-sm text-gray-700">
-							Halo, <strong>{auth.user?.nama}</strong>
-						</span>
+						<a
+							href="/profile"
+							class="flex items-center text-sm text-gray-700 hover:text-blue-600"
+						>
+							<span class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+								<span class="text-sm font-medium text-blue-600">
+									{auth.user?.nama?.charAt(0).toUpperCase() || 'U'}
+								</span>
+							</span>
+							{auth.user?.nama}
+						</a>
 						<Button variant="ghost" size="sm" onclick={handleLogout}>
 							Logout
 						</Button>
@@ -110,6 +124,12 @@
 				>
 					Presensi
 				</a>
+				<a
+					href="/analytics"
+					class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+				>
+					Statistik
+				</a>
 				{#if auth.user?.role === 'admin'}
 					<a
 						href="/admin"
@@ -119,9 +139,17 @@
 					</a>
 				{/if}
 				<div class="border-t border-gray-200 pt-2 mt-2">
-					<span class="block px-3 py-2 text-sm text-gray-500">
-						Halo, {auth.user?.nama}
-					</span>
+					<a
+						href="/profile"
+						class="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+					>
+						<span class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+							<span class="text-sm font-medium text-blue-600">
+								{auth.user?.nama?.charAt(0).toUpperCase() || 'U'}
+							</span>
+						</span>
+						{auth.user?.nama}
+					</a>
 					<button
 						type="button"
 						class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50"

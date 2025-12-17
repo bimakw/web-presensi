@@ -4,6 +4,7 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import { Button, Card } from '$lib/components/ui';
 	import Navbar from '$lib/components/layout/Navbar.svelte';
+	import Footer from '$lib/components/layout/Footer.svelte';
 
 	$effect(() => {
 		if (browser && auth.isAuthenticated) {
@@ -78,9 +79,5 @@
 		</div>
 	</main>
 
-	<footer class="mt-20 py-8 border-t border-gray-200">
-		<p class="text-center text-gray-500 text-sm">
-			&copy; {new Date().getFullYear()} Web Presensi. All rights reserved.
-		</p>
-	</footer>
+	<Footer />
 </div>
