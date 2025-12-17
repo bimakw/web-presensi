@@ -2,6 +2,8 @@
 
 Frontend application for attendance management system built with SvelteKit and Tailwind CSS.
 
+**[Live Demo](https://verdant-malasada-f57e00.netlify.app)**
+
 ## Tech Stack
 
 - **Framework:** SvelteKit 2.x with Svelte 5
