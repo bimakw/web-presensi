@@ -119,12 +119,23 @@ npm run preview
 # Type checking
 npm run check
 
-# Linting
-npm run lint
-
-# Format code
-npm run format
+# Run tests
+npm run test:run
 ```
+
+## Testing
+
+```bash
+# Run tests once
+npm run test:run
+
+# Run tests in watch mode
+npm run test
+```
+
+| Module | Tests |
+|--------|-------|
+| API Client | 10 |
 
 ## API Integration
 
