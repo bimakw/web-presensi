@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
 // Mock fetch for testing
 const mockFetch = vi.fn()
-global.fetch = mockFetch
+globalThis.fetch = mockFetch
 
 // Mock SvelteKit $app modules
 vi.mock('$app/environment', () => ({
@@ -20,7 +20,7 @@ const localStorageMock = {
   removeItem: vi.fn(),
   clear: vi.fn(),
 }
-Object.defineProperty(global, 'localStorage', { value: localStorageMock })
+Object.defineProperty(globalThis, 'localStorage', { value: localStorageMock })
 
 describe('ApiClient', () => {
   beforeEach(() => {

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { analyticsApi } from '$lib/api';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { Card, Badge, Alert, Select } from '$lib/components/ui';
+	import { Card, Alert, Select } from '$lib/components/ui';
 	import type { AnalyticsSummary, MonthlyAnalytics, DailyStat } from '$lib/types';
 
 	let loading = $state(true);
